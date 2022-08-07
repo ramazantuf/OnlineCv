@@ -1,11 +1,13 @@
 package com.backend.onlinecvproject.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="work_experiences")
+@Data
 public class WorkExperience {
     @Id
     @Column(name="id")
