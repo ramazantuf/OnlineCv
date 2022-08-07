@@ -1,6 +1,8 @@
 package com.backend.onlinecvproject.controllers;
 
 import com.backend.onlinecvproject.entities.Candidate;
+import com.backend.onlinecvproject.requests.CandidateCreateRequest;
+import com.backend.onlinecvproject.requests.CandidateUpdateRequest;
 import com.backend.onlinecvproject.services.CandidateService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +23,12 @@ public class CandidateController {
     }
 
     @PostMapping
-    public Candidate add(@RequestBody Candidate candidate){
+    public Candidate add(@RequestBody CandidateCreateRequest candidate){
         return this.candidateService.add(candidate);
     }
 
     @PutMapping("/{candidateId}")
-    public Candidate update(@PathVariable Long candidateId,@RequestBody Candidate updatedCandidate){
+    public Candidate update(@PathVariable Long candidateId,@RequestBody CandidateUpdateRequest updatedCandidate){
         return this.candidateService.update(candidateId,updatedCandidate);
     }
 

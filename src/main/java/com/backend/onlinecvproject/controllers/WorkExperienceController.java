@@ -1,6 +1,8 @@
 package com.backend.onlinecvproject.controllers;
 
 import com.backend.onlinecvproject.entities.WorkExperience;
+import com.backend.onlinecvproject.requests.WorkExperienceCreateRequest;
+import com.backend.onlinecvproject.requests.WorkExperienceUpdateRequest;
 import com.backend.onlinecvproject.services.WorkExperienceService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +23,12 @@ public class WorkExperienceController {
     }
 
     @PostMapping
-    public WorkExperience add(@RequestBody WorkExperience workExperience){
+    public WorkExperience add(@RequestBody WorkExperienceCreateRequest workExperience){
         return this.workExperienceService.add(workExperience);
     }
 
     @PutMapping("/{workExperienceId}")
-    public WorkExperience update(@PathVariable Long workExperienceId,@RequestBody WorkExperience updatedWorkExperience){
+    public WorkExperience update(@PathVariable Long workExperienceId,@RequestBody WorkExperienceUpdateRequest updatedWorkExperience){
         return this.workExperienceService.update(workExperienceId, updatedWorkExperience);
     }
 

@@ -1,6 +1,8 @@
 package com.backend.onlinecvproject.controllers;
 
 import com.backend.onlinecvproject.entities.Position;
+import com.backend.onlinecvproject.requests.PositionCreateRequest;
+import com.backend.onlinecvproject.requests.PositionUpdateRequest;
 import com.backend.onlinecvproject.services.PositionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +23,12 @@ public class PositionController {
     }
 
     @PostMapping
-    public Position add(@RequestBody Position position){
+    public Position add(@RequestBody PositionCreateRequest position){
         return this.positionService.add(position);
     }
 
     @PutMapping("/{positionId}")
-    public Position update(@PathVariable Long positionId,@RequestBody Position updatedPosition){
+    public Position update(@PathVariable Long positionId,@RequestBody PositionUpdateRequest updatedPosition){
         return this.positionService.update(positionId,updatedPosition);
     }
 

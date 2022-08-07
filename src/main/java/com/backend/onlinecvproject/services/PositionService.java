@@ -2,6 +2,8 @@ package com.backend.onlinecvproject.services;
 
 import com.backend.onlinecvproject.entities.Position;
 import com.backend.onlinecvproject.repositories.PositionRepository;
+import com.backend.onlinecvproject.requests.PositionCreateRequest;
+import com.backend.onlinecvproject.requests.PositionUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,17 +21,19 @@ public class PositionService {
         return this.positionRepository.findAll();
     }
 
-    public Position add(Position position){
-        return this.positionRepository.save(position);
+    public Position add(PositionCreateRequest position){
+        Position toAdd = new Position();
+        toAdd.setPositionName(position.getPositionName());
+        return this.positionRepository.save(toAdd);
     }
 
-    public Position update(Long positionId, Position updatedPosition){
+    public Position update(Long positionId, PositionUpdateRequest updatedPosition){
         Optional<Position> position = this.positionRepository.findById(positionId);
         if(position.isPresent()){
-            Position foundedPosition = position.get();
-            foundedPosition.setPositionName(updatedPosition.getPositionName());
-            this.positionRepository.save(foundedPosition);
-            return foundedPosition;
+            Position toUpdate = position.get();
+            toUpdate.setPositionName(updatedPosition.getPositionName());
+            this.positionRepository.save(toUpdate);
+            return toUpdate;
         }else{
             return null;
         }

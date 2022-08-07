@@ -1,6 +1,8 @@
 package com.backend.onlinecvproject.controllers;
 
 import com.backend.onlinecvproject.entities.Admin;
+import com.backend.onlinecvproject.requests.AdminCreateRequest;
+import com.backend.onlinecvproject.requests.AdminUpdateRequest;
 import com.backend.onlinecvproject.services.AdminService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,12 +24,12 @@ public class AdminController {
     }
 
     @PostMapping
-    public Admin add(@RequestBody Admin admin){
+    public Admin add(@RequestBody AdminCreateRequest admin){
         return this.adminService.add(admin);
     }
 
     @PutMapping("/{adminId}")
-    public Admin update(@PathVariable Long adminId,@RequestBody Admin updatedAdmin){
+    public Admin update(@PathVariable Long adminId,@RequestBody AdminUpdateRequest updatedAdmin){
         return this.adminService.update(adminId,updatedAdmin);
     }
 

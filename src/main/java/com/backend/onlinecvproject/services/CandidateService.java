@@ -3,6 +3,8 @@ package com.backend.onlinecvproject.services;
 import com.backend.onlinecvproject.entities.Admin;
 import com.backend.onlinecvproject.entities.Candidate;
 import com.backend.onlinecvproject.repositories.CandidateRepository;
+import com.backend.onlinecvproject.requests.CandidateCreateRequest;
+import com.backend.onlinecvproject.requests.CandidateUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,20 +22,26 @@ public class CandidateService {
         return this.candidateRepository.findAll();
     }
 
-    public Candidate add(Candidate candidate){
-        return this.candidateRepository.save(candidate);
+    public Candidate add(CandidateCreateRequest candidate){
+        Candidate toAdd = new Candidate();
+        toAdd.setFirstName(candidate.getFirstName());
+        toAdd.setLastName(candidate.getLastName());
+        toAdd.setEmail(candidate.getEmail());
+        toAdd.setPhoneNumber(candidate.getPhoneNumber());
+        toAdd.setPassword(candidate.getPassword());
+        return this.candidateRepository.save(toAdd);
     }
 
-    public Candidate update(Long candidateId, Candidate updatedCandidate){
+    public Candidate update(Long candidateId, CandidateUpdateRequest updatedCandidate){
         Optional<Candidate> candidate = this.candidateRepository.findById(candidateId);
         if(candidate.isPresent()){
-            Candidate foundedCandidate = candidate.get();
-            foundedCandidate.setFirstName(updatedCandidate.getFirstName());
-            foundedCandidate.setLastName(updatedCandidate.getLastName());
-            foundedCandidate.setEmail(updatedCandidate.getEmail());
-            foundedCandidate.setPhoneNumber(updatedCandidate.getPhoneNumber());
-            this.candidateRepository.save(foundedCandidate);
-            return foundedCandidate;
+            Candidate toUpdate = candidate.get();
+            toUpdate.setFirstName(updatedCandidate.getFirstName());
+            toUpdate.setLastName(updatedCandidate.getLastName());
+            toUpdate.setEmail(updatedCandidate.getEmail());
+            toUpdate.setPhoneNumber(updatedCandidate.getPhoneNumber());
+            this.candidateRepository.save(toUpdate);
+            return toUpdate;
         }else{
             return null;
         }
