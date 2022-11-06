@@ -28,12 +28,12 @@ public class PositionController {
     }
 
     @PutMapping("/{positionId}")
-    public Position update(@PathVariable Long positionId,@RequestBody PositionUpdateRequest updatedPosition){
+    public Position update(@PathVariable int positionId,@RequestBody PositionUpdateRequest updatedPosition){
         return this.positionService.update(positionId,updatedPosition);
     }
 
     @DeleteMapping("/{positionId}")
-    public void delete(@PathVariable Long positionId){
+    public void delete(@PathVariable int positionId){
         this.positionService.delete(positionId);
     }
 }

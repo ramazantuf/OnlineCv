@@ -1,11 +1,9 @@
 package com.backend.onlinecvproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "positions")
@@ -13,8 +11,13 @@ import javax.persistence.Table;
 public class Position {
     @Id
     @Column(name="id")
-    private Long id;
+    private int id;
 
     @Column(name="position_name")
     private String positionName;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "work_experience_id")
+    @JsonIgnore
+    private WorkExperience workExperience;
 }

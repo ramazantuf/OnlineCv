@@ -28,12 +28,12 @@ public class WorkExperienceController {
     }
 
     @PutMapping("/{workExperienceId}")
-    public WorkExperience update(@PathVariable Long workExperienceId,@RequestBody WorkExperienceUpdateRequest updatedWorkExperience){
+    public WorkExperience update(@PathVariable int workExperienceId,@RequestBody WorkExperienceUpdateRequest updatedWorkExperience){
         return this.workExperienceService.update(workExperienceId, updatedWorkExperience);
     }
 
     @DeleteMapping("/{workExperienceId}")
-    public void delete(@PathVariable Long workExperienceId){
+    public void delete(@PathVariable int workExperienceId){
         this.workExperienceService.delete(workExperienceId);
     }
 }

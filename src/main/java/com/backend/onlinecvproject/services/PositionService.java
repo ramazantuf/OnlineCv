@@ -27,7 +27,7 @@ public class PositionService {
         return this.positionRepository.save(toAdd);
     }
 
-    public Position update(Long positionId, PositionUpdateRequest updatedPosition){
+    public Position update(int positionId, PositionUpdateRequest updatedPosition){
         Optional<Position> position = this.positionRepository.findById(positionId);
         if(position.isPresent()){
             Position toUpdate = position.get();
@@ -39,7 +39,7 @@ public class PositionService {
         }
     }
 
-    public void delete(Long positionId){
+    public void delete(int positionId){
         this.positionRepository.deleteById(positionId);
     }
 }

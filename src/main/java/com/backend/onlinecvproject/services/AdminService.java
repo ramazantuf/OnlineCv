@@ -28,7 +28,7 @@ public class AdminService {
         return this.adminRepository.save(toAdd);
     }
 
-    public Admin update(Long adminId, AdminUpdateRequest updatedAdmin){
+    public Admin update(int adminId, AdminUpdateRequest updatedAdmin){
         Optional<Admin> admin = this.adminRepository.findById(adminId);
         if(admin.isPresent()){
             Admin toUpdate = admin.get();
@@ -41,7 +41,7 @@ public class AdminService {
         }
     }
 
-    public void delete(Long adminId){
+    public void delete(int adminId){
         this.adminRepository.deleteById(adminId);
     }
 }

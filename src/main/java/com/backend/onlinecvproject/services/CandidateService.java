@@ -5,10 +5,14 @@ import com.backend.onlinecvproject.entities.Candidate;
 import com.backend.onlinecvproject.repositories.CandidateRepository;
 import com.backend.onlinecvproject.requests.CandidateCreateRequest;
 import com.backend.onlinecvproject.requests.CandidateUpdateRequest;
+import com.backend.onlinecvproject.responses.CandidateViewResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CandidateService {
@@ -18,8 +22,10 @@ public class CandidateService {
         this.candidateRepository = candidateRepository;
     }
 
-    public List<Candidate> getall(){
-        return this.candidateRepository.findAll();
+    public List<CandidateViewResponse> getall(){
+        List<Candidate> candidates = this.candidateRepository.findAll();
+        List<CandidateViewResponse> result = new ArrayList<>();
+        return result;
     }
 
     public Candidate add(CandidateCreateRequest candidate){
@@ -32,7 +38,7 @@ public class CandidateService {
         return this.candidateRepository.save(toAdd);
     }
 
-    public Candidate update(Long candidateId, CandidateUpdateRequest updatedCandidate){
+    public Candidate update(int candidateId, CandidateUpdateRequest updatedCandidate){
         Optional<Candidate> candidate = this.candidateRepository.findById(candidateId);
         if(candidate.isPresent()){
             Candidate toUpdate = candidate.get();
@@ -47,7 +53,7 @@ public class CandidateService {
         }
     }
 
-    public void delete(Long candidateId){
+    public void delete(int candidateId){
         this.candidateRepository.deleteById(candidateId);
     }
 }

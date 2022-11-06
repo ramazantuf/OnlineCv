@@ -30,7 +30,7 @@ public class WorkExperienceService {
         return this.workExperienceRepository.save(toAdd);
     }
 
-    public WorkExperience update(Long workExperienceId, WorkExperienceUpdateRequest updatedWorkExperience){
+    public WorkExperience update(int workExperienceId, WorkExperienceUpdateRequest updatedWorkExperience){
         Optional<WorkExperience> workExperience = this.workExperienceRepository.findById(workExperienceId);
         if(workExperience.isPresent()){
             WorkExperience toUpdate = workExperience.get();
@@ -45,7 +45,7 @@ public class WorkExperienceService {
         }
     }
 
-    public void delete(Long workExperienceId){
+    public void delete(int workExperienceId){
         this.workExperienceRepository.deleteById(workExperienceId);
     }
 }

@@ -3,6 +3,7 @@ package com.backend.onlinecvproject.controllers;
 import com.backend.onlinecvproject.entities.Candidate;
 import com.backend.onlinecvproject.requests.CandidateCreateRequest;
 import com.backend.onlinecvproject.requests.CandidateUpdateRequest;
+import com.backend.onlinecvproject.responses.CandidateViewResponse;
 import com.backend.onlinecvproject.services.CandidateService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class CandidateController {
     }
 
     @GetMapping
-    public List<Candidate> getall(){
+    public List<CandidateViewResponse> getall(){
         return this.candidateService.getall();
     }
 
@@ -28,12 +29,12 @@ public class CandidateController {
     }
 
     @PutMapping("/{candidateId}")
-    public Candidate update(@PathVariable Long candidateId,@RequestBody CandidateUpdateRequest updatedCandidate){
+    public Candidate update(@PathVariable int candidateId,@RequestBody CandidateUpdateRequest updatedCandidate){
         return this.candidateService.update(candidateId,updatedCandidate);
     }
 
     @DeleteMapping("/{candidateId}")
-    public void delete(@PathVariable Long candidateId) {
+    public void delete(@PathVariable int candidateId) {
         this.candidateService.delete(candidateId);
     }
 }

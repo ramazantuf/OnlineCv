@@ -29,12 +29,12 @@ public class AdminController {
     }
 
     @PutMapping("/{adminId}")
-    public Admin update(@PathVariable Long adminId,@RequestBody AdminUpdateRequest updatedAdmin){
+    public Admin update(@PathVariable int adminId,@RequestBody AdminUpdateRequest updatedAdmin){
         return this.adminService.update(adminId,updatedAdmin);
     }
 
     @DeleteMapping("/{adminId}")
-    public void delete(@PathVariable Long adminId) {
+    public void delete(@PathVariable int adminId) {
         this.adminService.delete(adminId);
     }
 }
