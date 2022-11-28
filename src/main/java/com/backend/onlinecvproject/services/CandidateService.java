@@ -1,6 +1,6 @@
 package com.backend.onlinecvproject.services;
 
-import com.backend.onlinecvproject.entities.Admin;
+import com.backend.onlinecvproject.core.mapping.ModelMapperService;
 import com.backend.onlinecvproject.entities.Candidate;
 import com.backend.onlinecvproject.repositories.CandidateRepository;
 import com.backend.onlinecvproject.requests.CandidateCreateRequest;
@@ -8,8 +8,6 @@ import com.backend.onlinecvproject.requests.CandidateUpdateRequest;
 import com.backend.onlinecvproject.responses.CandidateViewResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,14 +15,16 @@ import java.util.stream.Collectors;
 @Service
 public class CandidateService {
     private CandidateRepository candidateRepository;
+    private final ModelMapperService modelMapperService;
 
-    public CandidateService(CandidateRepository candidateRepository) {
+    public CandidateService(CandidateRepository candidateRepository, ModelMapperService modelMapperService) {
         this.candidateRepository = candidateRepository;
+        this.modelMapperService = modelMapperService;
     }
 
     public List<CandidateViewResponse> getall(){
         List<Candidate> candidates = this.candidateRepository.findAll();
-        List<CandidateViewResponse> result = new ArrayList<>();
+        List<CandidateViewResponse> result = candidates.stream().map(color -> this.modelMapperService.forDto().map(color, CandidateViewResponse.class)).collect(Collectors.toList());
         return result;
     }
 
