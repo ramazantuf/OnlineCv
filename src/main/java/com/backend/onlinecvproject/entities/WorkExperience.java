@@ -17,7 +17,7 @@ public class WorkExperience {
     @Column(name="id")
     private int id;
 
-    @Column(name="position")
+    @Column(name="companyName")
     private String companyName;
 
     @OneToOne(fetch = FetchType.LAZY)

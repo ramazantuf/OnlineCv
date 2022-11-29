@@ -15,9 +15,4 @@ public class Position {
 
     @Column(name="position_name")
     private String positionName;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "work_experience_id")
-    @JsonIgnore
-    private WorkExperience workExperience;
 }
