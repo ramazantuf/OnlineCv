@@ -1,24 +1,33 @@
 package com.backend.onlinecvproject.services;
 
+import com.backend.onlinecvproject.core.mapping.ModelMapperService;
+import com.backend.onlinecvproject.entities.Candidate;
 import com.backend.onlinecvproject.entities.WorkExperience;
 import com.backend.onlinecvproject.repositories.WorkExperienceRepository;
 import com.backend.onlinecvproject.requests.WorkExperienceCreateRequest;
 import com.backend.onlinecvproject.requests.WorkExperienceUpdateRequest;
+import com.backend.onlinecvproject.responses.CandidateViewResponse;
+import com.backend.onlinecvproject.responses.WorkExperienceViewResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class WorkExperienceService {
     private WorkExperienceRepository workExperienceRepository;
+    private ModelMapperService modelMapperService;
 
-    public WorkExperienceService(WorkExperienceRepository workExperienceRepository) {
+    public WorkExperienceService(WorkExperienceRepository workExperienceRepository, ModelMapperService modelMapperService) {
         this.workExperienceRepository = workExperienceRepository;
+        this.modelMapperService = modelMapperService;
     }
 
-    public List<WorkExperience> getall(){
-        return this.workExperienceRepository.findAll();
+    public List<WorkExperienceViewResponse> getall(){
+        List<WorkExperience> candidates = this.workExperienceRepository.findAll();
+        List<WorkExperienceViewResponse> result = candidates.stream().map(color -> this.modelMapperService.forDto().map(color, WorkExperienceViewResponse.class)).collect(Collectors.toList());
+        return result;
     }
 
     public WorkExperience add(WorkExperienceCreateRequest workExperience){

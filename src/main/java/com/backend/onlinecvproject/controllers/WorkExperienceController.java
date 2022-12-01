@@ -3,6 +3,7 @@ package com.backend.onlinecvproject.controllers;
 import com.backend.onlinecvproject.entities.WorkExperience;
 import com.backend.onlinecvproject.requests.WorkExperienceCreateRequest;
 import com.backend.onlinecvproject.requests.WorkExperienceUpdateRequest;
+import com.backend.onlinecvproject.responses.WorkExperienceViewResponse;
 import com.backend.onlinecvproject.services.WorkExperienceService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class WorkExperienceController {
     }
 
     @GetMapping
-    public List<WorkExperience> getall(){
+    public List<WorkExperienceViewResponse> getall(){
         return this.workExperienceService.getall();
     }
 

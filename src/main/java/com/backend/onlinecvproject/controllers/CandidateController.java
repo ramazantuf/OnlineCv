@@ -38,4 +38,8 @@ public class CandidateController {
     public void delete(@PathVariable int candidateId) {
         this.candidateService.delete(candidateId);
     }
+    @GetMapping("/getbyid")
+    public CandidateViewResponse getbyid(@RequestParam int candidateId){
+        return this.candidateService.getbyid(candidateId);
+    }
 }

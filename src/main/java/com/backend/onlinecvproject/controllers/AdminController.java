@@ -3,6 +3,7 @@ package com.backend.onlinecvproject.controllers;
 import com.backend.onlinecvproject.entities.Admin;
 import com.backend.onlinecvproject.requests.AdminCreateRequest;
 import com.backend.onlinecvproject.requests.AdminUpdateRequest;
+import com.backend.onlinecvproject.responses.AdminViewResponse;
 import com.backend.onlinecvproject.services.AdminService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +20,8 @@ public class AdminController {
     }
 
     @GetMapping
-    public List<Admin> getAdmins(){
-        return this.adminService.getAdmins();
+    public List<AdminViewResponse> getAdmins(){
+        return this.adminService.getall();
     }
 
     @PostMapping

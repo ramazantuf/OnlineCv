@@ -56,4 +56,10 @@ public class CandidateService {
     public void delete(int candidateId){
         this.candidateRepository.deleteById(candidateId);
     }
+
+    public CandidateViewResponse getbyid(int candidateId){
+        Candidate candidate=this.candidateRepository.getReferenceById(candidateId);
+        CandidateViewResponse result = this.modelMapperService.forDto().map(candidate, CandidateViewResponse.class);
+        return result;
+    }
 }
