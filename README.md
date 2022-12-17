@@ -1,6 +1,6 @@
 <h1 align="center" id="title">Online CV Project Backend</h1>
 
-<p align="center"><img src="https://img.shields.io/github/issues/gorkemyelken/RentACar-Backend" alt="shields"><img src="https://img.shields.io/github/forks/gorkemyelken/RentACar-Backend" alt="shields"><img src="https://img.shields.io/github/stars/gorkemyelken/RentACar-Backend" alt="shields"></p>
+<p align="center"><img src="https://img.shields.io/github/issues/gorkemyelken/OnlineCVProject-Backend" alt="shields"><img src="https://img.shields.io/github/forks/gorkemyelken/OnlineCVProject-Backend" alt="shields"><img src="https://img.shields.io/github/stars/gorkemyelken/OnlineCVProject-Backend" alt="shields"></p>
  
 <h2>💻 Built with</h2>
 
